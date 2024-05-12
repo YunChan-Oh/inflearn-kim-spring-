@@ -3,15 +3,19 @@ package jpabook.jpashop.repository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jpabook.jpashop.domain.Member;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
+@RequiredArgsConstructor //원래는 @PersistenceContext가 필요한데 스프링부트가 @Autowired로 인젝션 지원을 해주기에
 public class MemberRepository {
 
-    @PersistenceContext
-    private EntityManager em;
+//    @PersistenceContext
+//    private EntityManager em;
+
+    private final EntityManager em;
 
     public void save(Member member) {
         em.persist(member);
